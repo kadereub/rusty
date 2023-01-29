@@ -1,0 +1,3 @@
+[mathutils]
+name = "finmath"
+crate-type = ["dylib"]

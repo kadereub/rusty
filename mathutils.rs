@@ -48,17 +48,23 @@ fn newtons_method_poly(p: &[f64], x0: f64, epsilon: f64, max_iter: i32) -> f64 {
         }
 }
 
-fn main() {
-    // let arr = [1.0, 2.0, 3.0];
-    let arr = [-100.0, 39.0, 59.0, 55.0, 20.0];
-    let root = newtons_method_poly(&arr, 1.0, 1e-6, 1000);
-    println!("Root: {:?}", root);
-    // let t =  eval_poly(&arr, 2.0);
-    // // can debug print
-    // println!("t {:?}", t);
-
-    // let d = deriv_poly(&arr);
-    // let r =  eval_poly(&d, 2.0);
-    // // can debug print
-    // println!("r {:?}", r);
+#[no_mangle]
+pub extern "finmath" fn irr(p: &[f64]) -> f64 {
+    let root =  newtons_method_poly(&p, 1.0, 1e-6, 1000);
+    root - 1;
 }
+
+// fn main() {
+//     // let arr = [1.0, 2.0, 3.0];
+//     let arr = [-100.0, 39.0, 59.0, 55.0, 20.0];
+//     let root = newtons_method_poly(&arr, 1.0, 1e-6, 1000);
+//     println!("Root: {:?}", root);
+//     // let t =  eval_poly(&arr, 2.0);
+//     // // can debug print
+//     // println!("t {:?}", t);
+
+//     // let d = deriv_poly(&arr);
+//     // let r =  eval_poly(&d, 2.0);
+//     // // can debug print
+//     // println!("r {:?}", r);
+// }
